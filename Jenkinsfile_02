@@ -1,0 +1,30 @@
+#!groovy
+
+pipeline {
+    environment {
+        JAVA_TOOL_OPTIONS = "-Duser.home=/var/maven"
+    }
+    agent {
+        docker {
+//             echo "hello"
+            image "maven:3.8.5-jdk-8"
+            args "-u root -v /tmp/maven:/var/maven/.m2 -e MAVEN_CONFIG=/var/maven/.m2"
+        }
+    }
+
+    stages {
+        stage("Build") {
+            steps {
+//                 echo "hello"
+                sh "mvn -version"
+                sh "mvn clean install sonar:sonar"
+            }
+        }
+    }
+
+//     post {
+//         always {
+//             cleanWs()
+//         }
+//     }
+}
