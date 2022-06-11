@@ -6,7 +6,7 @@ pipeline {
     }
     agent {
         docker {
-//             echo "hello"
+
             image "maven:3.8.5-jdk-8"
             args "-u root -v /tmp/maven:/var/maven/.m2 -e MAVEN_CONFIG=/var/maven/.m2"
         }
@@ -15,16 +15,19 @@ pipeline {
     stages {
         stage("Build") {
             steps {
-//                 echo "hello"
+
                 sh "mvn -version"
                 sh "mvn clean install -X"
             }
         }
+      stage('SonarQube analysis') {
+
+              steps{
+                        withSonarQubeEnv('Sonar-Qube') { 
+                        sh "mvn sonar:sonar"
+                        }
+              }
+      }
     }
 
-//     post {
-//         always {
-//             cleanWs()
-//         }
-//     }
 }
