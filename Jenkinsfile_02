@@ -21,14 +21,19 @@ pipeline {
                 jacoco(execPattern: 'target/jacoco.exec')
             }
         }
-      stage('SonarQube analysis') {
+        stage ('JaCoCo') {
+          steps {
+          jacoco()
+          }
+        }
+          stage('SonarQube analysis') {
 
-              steps{
-                        withSonarQubeEnv('Sonar-Qube') { 
-                        sh "mvn sonar:sonar"
-                        }
-              }
-      }
+                  steps{
+                            withSonarQubeEnv('Sonar-Qube') { 
+                            sh "mvn sonar:sonar"
+                            }
+                  }
+          }
     }
 
 }
