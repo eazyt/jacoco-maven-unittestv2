@@ -18,12 +18,12 @@ pipeline {
 
                 sh "mvn -version"
                 sh "mvn clean install -X"
-                jacoco(execPattern: 'target/jacoco.exec')
+                
             }
         }
         stage ('JaCoCo') {
           steps {
-          jacoco()
+          jacoco(execPattern: 'target/jacoco.exec')
           }
         }
           stage('SonarQube analysis') {
