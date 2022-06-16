@@ -3,7 +3,7 @@
   <groupId>com.bogotobogo</groupId>
   <artifactId>Git_Sonar_Jacoco</artifactId>
   <packaging>war</packaging>
-  <version>212.0-SNAPSHOT</version>
+  <version>2022.06.16-SNAPSHOT</version>
 
   <properties>
     <maven.compiler.source>7</maven.compiler.source>
