@@ -27,8 +27,12 @@
 
 
     <plugin>
-        <artifactId>maven-war-plugin</artifactId>
+      <artifactId>maven-war-plugin</artifactId>
       <version>3.3.1</version>
+      <configuration>
+					<warSourceDirectory>jacoco-maven-unittestv2</warSourceDirectory>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
     </plugin>
      
   </plugins>
