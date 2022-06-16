@@ -26,14 +26,7 @@ pipeline {
           jacoco(execPattern: 'target/jacoco.exec')
           }
         }
-          stage('SonarQube analysis') {
 
-                  steps{
-                            withSonarQubeEnv('Sonar-Qube') { 
-                            sh "mvn sonar:sonar"
-                            }
-                  }
-          }
     }
 
 }
