@@ -13,6 +13,7 @@ pipeline {
     }
 
     stages {
+        //this_stage_config_builds(war file) and test
         stage("Build") {
             steps {
 
@@ -21,12 +22,23 @@ pipeline {
                 
             }
         }
-        stage ('JaCoCo') {
-          steps {
-          jacoco(execPattern: 'target/jacoco.exec')
-          }
-        }
 
+//this_stage_config_brings_in_the_jacoco_metrics
+                      stage ('JaCoCo') {
+        steps {
+            jacoco(execPattern: 'target/jacoco.exec')
+        }
+    }
+
+        //this_stage_covers_the code coverage
+              stage('SonarQube analysis') {
+
+              steps{
+                        withSonarQubeEnv('Sonar-Qube') { 
+                        sh "mvn sonar:sonar"
+                        }
+              }
+      }
     }
 
 }
