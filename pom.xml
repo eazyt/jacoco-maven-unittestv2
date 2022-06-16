@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.bogotobogo</groupId>
   <artifactId>bogotobogo_JenkinsOnEC2</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <version>212.0-SNAPSHOT</version>
 
   <properties>
@@ -39,6 +39,18 @@
           </goals>
         </execution>
       </executions>
+    </plugin>
+	 
+
+
+
+    <plugin>
+      <artifactId>maven-war-plugin</artifactId>
+      <version>3.3.1</version>
+      <configuration>
+	<warSourceDirectory>jacoco-maven-unittestv2</warSourceDirectory>
+	<failOnMissingWebXml>false</failOnMissingWebXml>
+      </configuration>
     </plugin>
   </plugins>
  </build>
