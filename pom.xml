@@ -46,7 +46,7 @@
 
     <plugin>
       <artifactId>maven-war-plugin</artifactId>
-      <version>3.6.0</version>
+      <version>3.8.6</version>
       <configuration>
 	<warSourceDirectory>jacoco-maven-unittestv2</warSourceDirectory>
 	<failOnMissingWebXml>false</failOnMissingWebXml>
