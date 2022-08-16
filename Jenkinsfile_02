@@ -6,7 +6,6 @@ pipeline {
     }
     agent {
         docker {
-
             image "maven:3.8.5-jdk-8"
             args "-u root -v /tmp/maven:/var/maven/.m2 -e MAVEN_CONFIG=/var/maven/.m2"
         }
@@ -16,29 +15,26 @@ pipeline {
         //this_stage_config_builds(war file) and test
         stage("Build") {
             steps {
-
                 sh "mvn -version"
                 sh "mvn clean install -X"
-                
             }
         }
 
-//this_stage_config_brings_in_the_jacoco_metrics
-                      stage ('JaCoCo') {
-        steps {
-            jacoco(execPattern: 'target/jacoco.exec')
+        //this_stage_config_brings_in_the_jacoco_metrics
+        stage ('JaCoCo') {
+            steps {
+                jacoco(execPattern: 'target/jacoco.exec')
+            }
         }
-    }
 
         //this_stage_covers_the code coverage
-              stage('SonarQube analysis') {
+        stage('SonarQube analysis') {
 
-              steps{
-                        withSonarQubeEnv('Sonar-Qube') { 
-                        sh "mvn sonar:sonar"
-                        }
-              }
-      }
+            steps{
+                withSonarQubeEnv('Sonar-Qube') { 
+                sh "mvn sonar:sonar"
+                }
+            }
+        }
     }
-
 }
