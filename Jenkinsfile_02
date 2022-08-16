@@ -28,13 +28,13 @@ pipeline {
         }
 
         //this_stage_covers_the code coverage
-        stage('SonarQube analysis') {
+        // stage('SonarQube analysis') {
 
-            steps{
-                withSonarQubeEnv('Sonar-Qube') { 
-                sh "mvn sonar:sonar"
-                }
-            }
-        }
+        //     steps{
+        //         withSonarQubeEnv('Sonar-Qube') { 
+        //         sh "mvn sonar:sonar"
+        //         }
+        //         }
+        // }
     }
 }
